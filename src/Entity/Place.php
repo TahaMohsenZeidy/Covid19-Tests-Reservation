@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PlaceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,9 +21,19 @@ class Place
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToMany(targetEntity="App\Entity\Times", mappedBy="place")
      */
     private $times;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Tester", mappedBy="place")
+     */
+    private $tester;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Rdv", mappedBy="place")
+     */
+    private $rdv;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -49,26 +60,41 @@ class Place
      */
     private $result;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $tester;
-
-    public function getId(): ?int
+    public function __construct()
     {
-        return $this->id;
+        $this->tester = new ArrayCollection();
+        $this->times = new ArrayCollection();
     }
 
-    public function getTimes(): ?string
+
+    // ------------------------ Begin Getters and Setters ---------------
+
+    /**
+     * @return Collection|Tester[]
+     */
+    public function getTester(): Collection
+    {
+        return $this->tester;
+    }
+
+    /**
+     * @return Collection|Times[]
+     */
+    public function getTimes(): Collection
     {
         return $this->times;
     }
 
-    public function setTimes(string $times): self
+    public function getRdv():Rdv
     {
-        $this->times = $times;
+        return $this->rdv;
+    }
 
-        return $this;
+    // ------------------------ End Getters and Setters -----------------------------
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getRoom(): ?string
@@ -127,19 +153,7 @@ class Place
     public function setResult(string $result): self
     {
         $this->result = $result;
-
         return $this;
     }
 
-    public function getTester(): ?string
-    {
-        return $this->tester;
-    }
-
-    public function setTester(string $tester): self
-    {
-        $this->tester = $tester;
-
-        return $this;
-    }
 }

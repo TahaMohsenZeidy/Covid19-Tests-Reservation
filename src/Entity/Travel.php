@@ -29,6 +29,27 @@ class Travel
      */
     private $destination;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Rdv", mappedBy="travel")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $rdv;
+
+    //--------------Getters and Setters --------------------
+
+    public function getRdv(): ?Rdv
+    {
+        return $this->rdv;
+    }
+
+    public function setRdv(?Rdv $rdv): self
+    {
+        $this->rdv = $rdv;
+        return $this;
+    }
+    //--------------Getters and Setters --------------------
+
+
     public function getId(): ?int
     {
         return $this->id;

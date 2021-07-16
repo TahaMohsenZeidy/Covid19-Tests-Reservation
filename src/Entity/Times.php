@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Entity;
-
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TimesRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -28,6 +27,28 @@ class Times
      * @ORM\Column(type="date")
      */
     private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Place", inversedBy="times")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $place;
+
+//-----------------------------Getters and setters begin ------------
+
+
+    public function getPlace(): ?Place
+    {
+        return $this->place;
+    }
+
+    public function setPlace(?Place $place): self
+    {
+        $this->place = $place;
+        return $this;
+    }
+
+// ------------------------------ Getters and setters end --------------------
 
     public function getId(): ?int
     {
@@ -57,4 +78,5 @@ class Times
 
         return $this;
     }
+
 }

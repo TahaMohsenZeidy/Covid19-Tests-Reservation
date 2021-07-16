@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8fdde9a-0e80-47df-83d2-5f52b02c0df0" name="Default Changelist" comment="" />
+    <list default="true" id="b8fdde9a-0e80-47df-83d2-5f52b02c0df0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210714102706.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210715095157.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210715102111.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210715103104.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210715103245.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210715110111.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210715110623.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210716112028.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210705114606.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210706184015.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210706185912.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/MedicalHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MedicalHistory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Patient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Patient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Place.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Place.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Rdv.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Rdv.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Symptomes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Symptomes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Tester.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tester.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Times.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Times.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Travel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Travel.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +35,9 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -113,13 +139,18 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1utNTaKwpGWX3jOloUTqtxJgmXe" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ignore.virus.scanning.warn.message" value="true" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -147,17 +178,31 @@
       <workItem from="1625734718002" duration="888000" />
       <workItem from="1625736598891" duration="5093000" />
       <workItem from="1625821260561" duration="948000" />
+      <workItem from="1625822687649" duration="3858000" />
+      <workItem from="1626171798801" duration="824000" />
+      <workItem from="1626174749193" duration="3122000" />
+      <workItem from="1626192498268" duration="7293000" />
+      <workItem from="1626255132326" duration="320000" />
+      <workItem from="1626255471827" duration="206000" />
+      <workItem from="1626255742435" duration="11698000" />
+      <workItem from="1626302360550" duration="245000" />
+      <workItem from="1626342312194" duration="9893000" />
+      <workItem from="1626381347550" duration="8104000" />
+      <workItem from="1626427920580" duration="5192000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser" timestamp="1625744168244">
+    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser" timestamp="1626430759548">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1625744168244" />
+    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1626430759548" />
     <state x="402" y="198" key="NewPhpClassDialog" timestamp="1625481558405">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -166,10 +211,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="184" y="26" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1625482243511" />
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1625822688279">
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1626428028017">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1625822688279" />
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1626428028017" />
     <state x="339" y="172" key="run.anything.popup" timestamp="1625491857949">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

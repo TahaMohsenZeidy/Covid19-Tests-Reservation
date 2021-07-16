@@ -19,6 +19,7 @@ class Tester
      */
     private $id;
 
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -43,6 +44,28 @@ class Tester
      * @ORM\Column(type="string", length=255)
      */
     private $department;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Place", inversedBy="tester")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $place;
+
+// --------------------------- Getters and Setters Begin -------------------
+
+
+    public function getPlace(): ?Place
+    {
+        return $this->place;
+    }
+
+    public function setPlace(?Place $place): self
+    {
+        $this->place = $place;
+        return $this;
+    }
+
+    // --------------------------- Getters and Setters Begin -------------------
 
     public function getId(): ?int
     {
@@ -108,4 +131,5 @@ class Tester
 
         return $this;
     }
+
 }

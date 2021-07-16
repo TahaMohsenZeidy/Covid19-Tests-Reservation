@@ -85,9 +85,20 @@ class Symptomes
     private $case_contact;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Patient", mappedBy="symptomes")
+     * @ORM\OneToOne(targetEntity="App\Entity\Rdv", mappedBy="symptomes")
      */
-    private $patient;
+    private $rdv;
+
+    //--------------Getters and Setters --------------------
+
+    public function getRdv(): ?Rdv
+    {
+        return $this->rdv;
+    }
+
+    //--------------Getters and Setters --------------------
+
+
 
     public function getId(): ?int
     {
@@ -249,4 +260,5 @@ class Symptomes
 
         return $this;
     }
+
 }

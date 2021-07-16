@@ -52,6 +52,33 @@ class Patient
     private $email;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $address;
+
+    public function __construct()
+    {
+        $this->rdv = new ArrayCollection();
+        $this->medical_history = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     */
+    public function setAddress($address): void
+    {
+        $this->address = $address;
+    }
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $gsm;
@@ -67,36 +94,23 @@ class Patient
     private $gender;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\MedicalHistory", inversedBy="patient")
-     * @ORM\JoinColumn()
+     * @ORM\OneToMany(targetEntity="App\Entity\MedicalHistory", mappedBy="patient")
      */
     private $medical_history;
 
     /**
-     * @return MedicalHistory
+     * @return Collection|MedicalHistory[]
      */
-    public function getMedicalHistory(): MedicalHistory
+    public function getMedicalHistory(): Collection
     {
         return $this->medical_history;
     }
 
-    /**
-     * @param MedicalHistory $med
-     */
-    public function setMedicalHistory($med): void
-    {
-        $this->medical_history = $med;
-    }
 
     /**
     * @ORM\OneToMany(targetEntity="App\Entity\Rdv", mappedBy="patient")
     */
     private $rdv;
-
-    public function __construct()
-    {
-        $this->rdv = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -212,11 +226,12 @@ class Patient
     }
 
     /**
-     * @return ArrayCollection
+     * @return Collection|Rdv[]
      */
-    public function getRdv(): ArrayCollection
+    public function getRdv(): Collection
     {
         return $this->rdv;
     }
+
 
 }

@@ -5,7 +5,6 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\RdvRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @ORM\Entity(repositoryClass=RdvRepository::class)
@@ -26,20 +25,17 @@ class Rdv
      */
     private $patient;
 
-    /**
-     * @return Patient
-     */
-    public function getPatient(): Patient
+
+    public function getPatient(): ?Patient
     {
         return $this->patient;
     }
 
-    /**
-     * @param Patient $patient
-     */
-    public function setPatient(Patient $patient): void
+
+    public function setPatient(?Patient $patient): self
     {
         $this->patient = $patient;
+        return $this;
     }
 
     /**
@@ -48,24 +44,32 @@ class Rdv
      */
     private $symptomes;
 
-    /**
-     * @return Symptomes
-     */
-    public function getSymptomes(): Symptomes
+    public function getSymptomes(): ?Symptomes
     {
         return $this->symptomes;
     }
 
-    /**
-     * @param mixed $symptomes
-     */
-    public function setSymptomes($symptomes): void
+
+    public function setSymptomes(?Symptomes $symptomes): self
     {
         $this->symptomes = $symptomes;
+        return $this;
     }
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToOne(targetEntity="App\Entity\Travel", inversedBy="rdv")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $travel;
+
+    public function getTravel(): ?Travel
+    {
+        return $this->travel;
+    }
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Place", inversedBy="rdv")
+     * @ORM\JoinColumn()
      */
     private $place;
 
@@ -84,17 +88,18 @@ class Rdv
         return $this->id;
     }
 
-    public function getPlace(): ?string
+    public function getPlace(): ?Place
     {
         return $this->place;
     }
 
-    public function setPlace(string $place): self
+
+    public function setPlace(?Place $place): self
     {
         $this->place = $place;
-
         return $this;
     }
+
 
     public function getDate(): ?\DateTimeInterface
     {

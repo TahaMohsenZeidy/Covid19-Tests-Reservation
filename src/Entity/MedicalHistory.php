@@ -40,34 +40,29 @@ class MedicalHistory
     private $medecine_3;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $scan;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $scan_1;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $analyse;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $analyse_1;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Patient", inversedBy="medical_history")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Patient", inversedBy="medical_history")
      */
     private $patient;
-
-    public function __construct()
-    {
-        $this->patient =
-    }
 
     /**
      * @return Patient
@@ -77,12 +72,11 @@ class MedicalHistory
         return $this->patient;
     }
 
-    /**
-     * @param mixed $patient
-     */
-    public function setPatient($patient): void
+
+    public function setPatient(?Patient $patient): self
     {
         $this->patient = $patient;
+        return $this;
     }
 
     public function getId(): ?int
