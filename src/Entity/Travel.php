@@ -4,12 +4,17 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TravelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource(
+ *     itemOperations={"get"},
+ *     collectionOperations={"get"}
+ * )
  * @ORM\Entity(repositoryClass=TravelRepository::class)
  */
-#[ApiResource]
 class Travel
 {
     /**
@@ -30,22 +35,23 @@ class Travel
     private $destination;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Rdv", mappedBy="travel")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity="App\Entity\Rdv", mappedBy="travel")
      */
     private $rdv;
 
-    //--------------Getters and Setters --------------------
-
-    public function getRdv(): ?Rdv
+    public function __construct()
     {
-        return $this->rdv;
+        $this->rdv = new ArrayCollection();
     }
 
-    public function setRdv(?Rdv $rdv): self
+    //--------------Getters and Setters --------------------
+
+    /**
+     * @return Collection|Rdv[]
+     */
+    public function getRdv(): ?Collection
     {
-        $this->rdv = $rdv;
-        return $this;
+        return $this->rdv;
     }
     //--------------Getters and Setters --------------------
 

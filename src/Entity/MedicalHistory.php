@@ -7,9 +7,12 @@ use App\Repository\MedicalHistoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource(
+ *     collectionOperations={"get"},
+ *     itemOperations={"get"}
+ * )
  * @ORM\Entity(repositoryClass=MedicalHistoryRepository::class)
  */
-#[ApiResource]
 class MedicalHistory
 {
     /**

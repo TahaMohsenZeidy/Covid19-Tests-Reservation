@@ -6,9 +6,12 @@ use App\Repository\TimesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource(
+ *     collectionOperations={"get"},
+ *     itemOperations={"get"}
+ * )
  * @ORM\Entity(repositoryClass=TimesRepository::class)
  */
-#[ApiResource]
 class Times
 {
     /**

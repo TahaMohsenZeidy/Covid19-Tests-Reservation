@@ -7,8 +7,11 @@ use App\Repository\RdvRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource(
+ *     itemOperations={"get"},
+ *     collectionOperations={"get"}
+ * )
  * @ORM\Entity(repositoryClass=RdvRepository::class)
- * @ApiResource()
  */
 class Rdv
 {
@@ -25,7 +28,6 @@ class Rdv
      */
     private $patient;
 
-
     public function getPatient(): ?Patient
     {
         return $this->patient;
@@ -39,7 +41,7 @@ class Rdv
     }
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Symptomes", inversedBy="rdv")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Symptomes", inversedBy="rdv")
      * @ORM\JoinColumn(nullable=false)
      */
     private $symptomes;
@@ -49,7 +51,6 @@ class Rdv
         return $this->symptomes;
     }
 
-
     public function setSymptomes(?Symptomes $symptomes): self
     {
         $this->symptomes = $symptomes;
@@ -57,7 +58,7 @@ class Rdv
     }
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Travel", inversedBy="rdv")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Travel", inversedBy="rdv")
      * @ORM\JoinColumn(nullable=true)
      */
     private $travel;
@@ -67,9 +68,15 @@ class Rdv
         return $this->travel;
     }
 
+    public function setTravel(?Travel $travel): self
+    {
+        $this->travel = $travel;
+        return $this;
+    }
+
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Place", inversedBy="rdv")
-     * @ORM\JoinColumn()
+     * @ORM\ManyToOne(targetEntity="App\Entity\Place", inversedBy="rdv")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $place;
 

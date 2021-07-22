@@ -5,12 +5,16 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PlaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource(
+ *     itemOperations={"get"},
+ *     collectionOperations={"get"}
+ * )
  * @ORM\Entity(repositoryClass=PlaceRepository::class)
  */
-#[ApiResource]
 class Place
 {
     /**
@@ -31,7 +35,7 @@ class Place
     private $tester;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Rdv", mappedBy="place")
+     * @ORM\OneToMany(targetEntity="App\Entity\Rdv", mappedBy="place")
      */
     private $rdv;
 
@@ -64,6 +68,7 @@ class Place
     {
         $this->tester = new ArrayCollection();
         $this->times = new ArrayCollection();
+        $this->rdv = new ArrayCollection();
     }
 
 
@@ -85,10 +90,15 @@ class Place
         return $this->times;
     }
 
-    public function getRdv():Rdv
+    /**
+     * @return Collection|Rdv[]
+     */
+    public function getRdv(): Collection
     {
         return $this->rdv;
     }
+
+
 
     // ------------------------ End Getters and Setters -----------------------------
 

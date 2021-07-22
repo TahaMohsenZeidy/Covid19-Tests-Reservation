@@ -4,12 +4,17 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\SymptomesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource(
+ *     itemOperations={"get"},
+ *     collectionOperations={"get"}
+ * )
  * @ORM\Entity(repositoryClass=SymptomesRepository::class)
  */
-#[ApiResource]
 class Symptomes
 {
     /**
@@ -85,13 +90,21 @@ class Symptomes
     private $case_contact;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Rdv", mappedBy="symptomes")
+     * @ORM\OneToMany(targetEntity="App\Entity\Rdv", mappedBy="symptomes")
      */
     private $rdv;
 
+    public function __construct()
+    {
+        $this->rdv = new ArrayCollection();
+    }
+
     //--------------Getters and Setters --------------------
 
-    public function getRdv(): ?Rdv
+    /**
+     * @return Collection|Rdv[]
+     */
+    public function getRdv(): ?Collection
     {
         return $this->rdv;
     }
