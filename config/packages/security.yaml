@@ -1,12 +1,15 @@
+# api/config/packages/security.yaml
 security:
     encoders:
         App\Entity\Patient: bcrypt
         App\Entity\Tester: bcrypt
     providers:
+        # used to reload user from session & other features (e.g. switch_user)
         database:
             entity:
                 class: App\Entity\Patient
                 property: email
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -14,8 +17,8 @@ security:
         api:
             pattern: ^/api
             stateless: true
+            provider: database
             json_login:
-                # Here the authentication will happen(token generation).
                 check_path: /api/login_check
                 username_path: email
                 password_path: identifier
@@ -26,5 +29,5 @@ security:
                     - lexik_jwt_authentication.jwt_token_authenticator
 
     access_control:
-        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY } # Allows accessing the Swagger UI
+        - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }
