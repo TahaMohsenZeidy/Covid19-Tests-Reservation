@@ -1,8 +1,10 @@
 # api/config/packages/security.yaml
 security:
     encoders:
-        App\Entity\Patient: bcrypt
-        App\Entity\Tester: bcrypt
+        App\Entity\Patient:
+            algorithm: auto
+        App\Entity\Tester:
+            algorithm: auto
     providers:
         # used to reload user from session & other features (e.g. switch_user)
         database:

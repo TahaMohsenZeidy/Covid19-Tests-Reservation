@@ -28,6 +28,57 @@ class AppFixtures extends Fixture
      */
     private $faker;
 
+    private const USERS = [
+        [
+            'firstname' => 'Ali',
+            'lastname' => 'Ben Yedder',
+            'birthdate' => '21-08-1997 00:00:00',
+            'nationality' => 'libyan',
+            'email' => 'ali.benyedder@gmail.com',
+            'address' => 'sousse - tunisie',
+            'age' => 22,
+            'gender' => 'male',
+            'identifier' => '11223344',
+            'gsm' => '92844871'
+        ],
+        [
+            'firstname' => 'Imen',
+            'lastname' => 'Khalfallah',
+            'birthdate' => '05-01-2001 00:00:00',
+            'nationality' => 'tunisian',
+            'email' => 'imen.khalfallah@gmail.com',
+            'address' => 'gabes - tunisie',
+            'age' => 20,
+            'gender' => 'female',
+            'identifier' => '44332211',
+            'gsm' => '50546285'
+        ],
+        [
+            'firstname' => 'Amine',
+            'lastname' => 'Marzouqi',
+            'birthdate' => '31-04-1994 00:00:00',
+            'nationality' => 'algerian',
+            'email' => 'amine.marzouqi@gmail.com',
+            'address' => 'beja - tunisie',
+            'age' => 30,
+            'gender' => 'male',
+            'identifier' => '77889944',
+            'gsm' => '50468457'
+        ],
+        [
+            'firstname' => 'Racha',
+            'lastname' => 'Khaled',
+            'birthdate' => '06-06-1998 00:00:00',
+            'nationality' => 'syrian',
+            'email' => 'racha.khaled@gmail.com',
+            'address' => 'beirout - syria',
+            'age' => 23,
+            'gender' => 'female',
+            'identifier' => '66996699',
+            'gsm' => '78245698'
+        ]
+    ];
+
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->passwordEncoder = $passwordEncoder;
@@ -48,14 +99,14 @@ class AppFixtures extends Fixture
 
     public function loadRdvs(ObjectManager $manager){
         $symp = $this->getReference('symp_3');
-        $patient = $this->getReference('admin_patient_6');
         $place = $this->getReference('place_4');
         $travel = $this->getReference('travel_8');
         for ($i=0; $i<50; $i++){
+            $patientReference = $this->getRandomPatientReference();
             $rdv = new Rdv();
             $rdv->setDate($this->faker->dateTimeThisYear);
             $rdv->setResult($this->faker->realText());
-            $rdv->setPatient($patient);
+            $rdv->setPatient($patientReference);
             $rdv->setTravel($travel);
             $rdv->setSymptomes($symp);
             $rdv->setPlace($place);
@@ -66,28 +117,28 @@ class AppFixtures extends Fixture
     }
 
     public function loadPatients(ObjectManager $manager){
-        for ($i=0; $i<10; $i++){
+        foreach (self::USERS as $user){
             $patient = new Patient();
-            $patient->setFirstname($this->faker->firstName);
-            $patient->setLastname($this->faker->lastName);
-            $patient->setIdentifier($this->passwordEncoder->encodePassword($patient, '11621994'));
-            $patient->setBirthdate($this->faker->dateTimeThisCentury);
-            $patient->setNationality($this->faker->country);
-            $patient->setEmail($this->faker->email);
-            $patient->setGsm($this->faker->phoneNumber);
-            $patient->setGender('Male');
-            $patient->setAddress($this->faker->address);
-            $patient->setAge($this->faker->randomNumber());
-            $this->addReference("admin_patient_$i", $patient);
+            $patient->setFirstname($user['firstname']);
+            $patient->setLastname($user['lastname']);
+            $patient->setIdentifier($this->passwordEncoder->encodePassword($patient, $user['identifier']));
+            $patient->setNationality($user['nationality']);
+            $date = new \DateTime($user['birthdate']);
+            $patient->setBirthdate($date);
+            $patient->setEmail($user['email']);
+            $patient->setGsm($user['gsm']);
+            $patient->setGender($user['gender']);
+            $patient->setAddress($user['address']);
+            $patient->setAge($user['age']);
+            $this->addReference("patient_".$user['email'], $patient);
             $manager->persist($patient);
         }
         $manager->flush();
     }
 
     public function loadMedicalHistory(ObjectManager $manager){
-        $patient = $this->getReference('admin_patient_6');
-        for ($i=0; $i<50; $i++){
-            for ($j=0; $j< rand(1, 5); $j++){
+        for ($i=0; $i<20; $i++){
+                $patientReference = $this->getRandomPatientReference();
                 $medHist = new MedicalHistory();
                 $medHist->setDisease($this->faker->realText());
                 $medHist->setAnalyse1($this->faker->realText());
@@ -97,9 +148,8 @@ class AppFixtures extends Fixture
                 $medHist->setMedecine3($this->faker->realText());
                 $medHist->setScan($this->faker->realText());
                 $medHist->setScan1($this->faker->realText());
-                $medHist->setPatient($patient);
+                $medHist->setPatient($patientReference);
                 $manager->persist($medHist);
-            }
         }
         $manager->flush();
     }
@@ -179,5 +229,10 @@ class AppFixtures extends Fixture
             $manager->persist($times);
         }
         $manager->flush();
+    }
+
+    public function getRandomPatientReference(): Patient
+    {
+        return $this->getReference('patient_'. self::USERS[rand(0, 3)]['email']);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\PatientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,9 +15,33 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
- *     itemOperations={"get"},
- *     collectionOperations={"post"},
- *     normalizationContext={"groups"={"read"}}
+ *      itemOperations={
+ *         "get"={
+ *               "access_control"="is_granted('IS_AUTHENTICATED_FULLY')",
+ *               "normalization_context"={
+ *                     "groups"={"get"}
+ *                }
+ *          },
+ *         "put"={
+ *                "access_control"="is_granted('IS_AUTHENTICATED_FULLY') and object == user",
+ *                "denormalization_context"={
+ *                     "groups"={"put"}
+ *                },
+ *                "normalization_context"={
+ *                     "groups"={"get"}
+ *               }
+ *          }
+ *      },
+ *      collectionOperations={
+ *         "post"={
+ *              "denormalization_context"={
+ *                  "groups"={"post"}
+ *              },
+ *              "normalization_context"={
+ *                  "groups"={"get"}
+ *              }
+ *         }
+ *     }
  * )
  * @ORM\Entity(repositoryClass=PatientRepository::class)
  * @method string getUserIdentifier()
@@ -29,31 +54,32 @@ class Patient implements UserInterface
 
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"read"})
+     * @Groups({"get"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"read"})
-     * @Assert\NotBlank()
+     * @Groups({"get", "put", "post", "get_rdvs_with_all"})
      * @Assert\Length(min=4, max=255)
+     * @Assert\NotBlank()
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"read"})
-     * @Assert\NotBlank()
+     * @Groups({"get", "put", "post", "get_rdvs_with_all"})
      * @Assert\Length(min=4, max=255)
+     * @Assert\NotBlank()
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
+     * @Groups({"post", "put"})
      * @Assert\Regex(
      *     pattern="/(^[0-9]*$)/",
      *     message="Identifier must contain at least 8 digits and should not contain letters"
@@ -63,39 +89,75 @@ class Patient implements UserInterface
 
     /**
      * @ORM\Column(type="date")
-     * @Groups({"read"})
+     * @Groups({"get", "put", "post"})
      * @Assert\NotBlank()
      */
     private $birthdate;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"read"})
-     * @Assert\NotBlank()
+     * @Groups({"get", "put", "post"})
      * @Assert\Length(min=4, max=255)
+     * @Assert\NotBlank()
      */
     private $nationality;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @Groups({"post"})
      * @Assert\Email()
+     * @Assert\NotBlank()
+     *
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @Groups({"get", "put", "post"})
      * @Assert\Length(min=5, max=255)
+     * @Assert\NotBlank()
      */
     private $address;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Groups({"get", "put", "post"})
+     */
+    private $gsm;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     * @Groups({"get", "put", "post"})
+     */
+    private $age;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Groups({"get", "put", "post"})
+     */
+    private $gender;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MedicalHistory", mappedBy="patient")
+     * @Groups({"get"})
+     * @ApiSubresource()
+     */
+    private $medical_history;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Rdv", mappedBy="patient")
+     * @Groups({"get"})
+     * @ApiSubresource()
+     */
+    private $rdv;
 
     public function __construct()
     {
         $this->rdv = new ArrayCollection();
         $this->medical_history = new ArrayCollection();
     }
-
     /**
      * @return mixed
      */
@@ -103,7 +165,6 @@ class Patient implements UserInterface
     {
         return $this->address;
     }
-
     /**
      * @param string $address
      */
@@ -111,28 +172,6 @@ class Patient implements UserInterface
     {
         $this->address = $address;
     }
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $gsm;
-
-    /**
-     * @ORM\Column(type="integer")
-     *
-     */
-    private $age;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $gender;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MedicalHistory", mappedBy="patient")
-     */
-    private $medical_history;
-
     /**
      * @return Collection|MedicalHistory[]
      */
@@ -140,126 +179,94 @@ class Patient implements UserInterface
     {
         return $this->medical_history;
     }
-
-
-    /**
-    * @ORM\OneToMany(targetEntity="App\Entity\Rdv", mappedBy="patient")
-    */
-    private $rdv;
-
     public function getId(): ?int
     {
         return $this->id;
     }
-
     public function getFirstname(): ?string
     {
         return $this->firstname;
     }
-
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
 
         return $this;
     }
-
     public function getLastname(): ?string
     {
         return $this->lastname;
     }
-
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
-
         return $this;
     }
-
     public function getIdentifier(): ?string
     {
         return $this->identifier;
     }
-
     public function setIdentifier(string $identifier): self
     {
         $this->identifier = $identifier;
-
         return $this;
     }
-
     public function getBirthdate(): ?\DateTimeInterface
     {
         return $this->birthdate;
     }
-
     public function setBirthdate(\DateTimeInterface $birthdate): self
     {
         $this->birthdate = $birthdate;
 
         return $this;
     }
-
     public function getNationality(): ?string
     {
         return $this->nationality;
     }
-
     public function setNationality(string $nationality): self
     {
         $this->nationality = $nationality;
-
         return $this;
     }
-
     public function getEmail(): ?string
     {
         return $this->email;
     }
-
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
-
     public function getGsm(): ?string
     {
         return $this->gsm;
     }
-
     public function setGsm(string $gsm): self
     {
         $this->gsm = $gsm;
-
         return $this;
     }
-
     public function getAge(): ?int
     {
         return $this->age;
     }
-
     public function setAge(int $age): self
     {
         $this->age = $age;
-
         return $this;
     }
-
     public function getGender(): ?string
     {
         return $this->gender;
     }
-
     public function setGender(string $gender): self
     {
         $this->gender = $gender;
 
         return $this;
     }
-
     /**
      * @return Collection|Rdv[]
      */
@@ -267,8 +274,6 @@ class Patient implements UserInterface
     {
         return $this->rdv;
     }
-
-
     /**
      * @inheritDoc
      */
@@ -276,7 +281,6 @@ class Patient implements UserInterface
     {
         return ['ROLE_USER'];
     }
-
     /**
      * @inheritDoc
      */
@@ -284,7 +288,6 @@ class Patient implements UserInterface
     {
         return $this->identifier;
     }
-
     /**
      * @inheritDoc
      */
@@ -292,25 +295,16 @@ class Patient implements UserInterface
     {
         return null;
     }
-
     /**
      * @inheritDoc
      */
-    public function eraseCredentials()
-    {
-
-    }
-
+    public function eraseCredentials(){}
     /**
      * @inheritDoc
      */
     public function getUsername(): ?string
     {
-        return $this->identifier;
+        return $this->email;
     }
-
-    public function __call($name, $arguments)
-    {
-        // TODO: Implement @method string getUserIdentifier()
-    }
+    public function __call($name, $arguments){}
 }

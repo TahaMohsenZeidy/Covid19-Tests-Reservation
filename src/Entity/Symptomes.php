@@ -7,11 +7,23 @@ use App\Repository\SymptomesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     itemOperations={"get"},
- *     collectionOperations={"get"}
+ *     itemOperations={
+ *          "get"={
+ *              "normalization_context"={
+ *                   "groups"={"get_rdvs_with_all"}
+ *              }
+ *         },
+ *      },
+ *     collectionOperations={
+ *         "get",
+ *         "post"={
+ *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY')"
+ *          }
+ *      }
  * )
  * @ORM\Entity(repositoryClass=SymptomesRepository::class)
  */
@@ -21,6 +33,7 @@ class Symptomes
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"get_rdvs_with_all"})
      */
     private $id;
 
@@ -31,16 +44,19 @@ class Symptomes
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"get_rdvs_with_all"})
      */
     private $fever;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"get_rdvs_with_all"})
      */
     private $cough;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"get_rdvs_with_all"})
      */
     private $fatigue;
 
@@ -56,6 +72,7 @@ class Symptomes
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"get_rdvs_with_all"})
      */
     private $headache;
 
@@ -71,6 +88,7 @@ class Symptomes
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"get_rdvs_with_all"})
      */
     private $hard_breathing;
 
@@ -81,6 +99,7 @@ class Symptomes
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"get_rdvs_with_all"})
      */
     private $mass_gathering;
 

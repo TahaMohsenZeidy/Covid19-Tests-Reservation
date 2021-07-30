@@ -37,15 +37,8 @@ class PasswordHashSubscriber implements EventSubscriberInterface
         $patient = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
 
-        if(!$patient instanceof Patient || Request::METHOD_POST !== $method){
-            if ($patient instanceof Tester){
-                $patient->setIdentifier(
-                    $this->passwordEncoder->encodePassword($patient, $patient->getIdentifier())
-                );
-            }
-            else{
-                return;
-            }
+        if(!$patient instanceof Patient || !in_array($method, [Request::METHOD_POST, Request::METHOD_PUT])){
+            return;
         }
         // we need to hash the password
         $patient->setIdentifier(
