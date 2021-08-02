@@ -18,13 +18,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  *              }
  *         },
  *         "put"={
- *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY') and object.getPatient() == user"
+ *              "access_control"="is_granted('ROLE_EDITOR') or (is_granted('ROLE_WRITER') and object.getPatient() == user)"
  *          }
  *      },
  *     collectionOperations={
  *         "get",
  *         "post"={
- *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY')"
+ *              "access_control"="is_granted('ROLE_WRITER')"
  *          }
  *      },
  *     denormalizationContext={

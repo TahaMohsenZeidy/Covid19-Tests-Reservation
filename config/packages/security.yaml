@@ -29,8 +29,15 @@ security:
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
             guard:
                 authenticators:
-                    - lexik_jwt_authentication.jwt_token_authenticator
+#                    - lexik_jwt_authentication.jwt_token_authenticator
+                    - App\Security\TokenAuthenticator
+
+            user_checker: App\Security\PatientEnabledChecker
 
     access_control:
-        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY } # Allows accessing the Swagger UI
+#        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY } # Allows accessing the Swagger UI
         - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_WRITER, ROLE_EDITOR]
+        ROLE_SUPERADMIN: ROLE_ADMIN

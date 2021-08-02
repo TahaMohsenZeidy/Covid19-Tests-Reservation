@@ -9,6 +9,7 @@ use App\Entity\Symptomes;
 use App\Entity\Tester;
 use App\Entity\Times;
 use App\Entity\Travel;
+use App\Security\TokenGenerator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -39,7 +40,9 @@ class AppFixtures extends Fixture
             'age' => 22,
             'gender' => 'male',
             'identifier' => '11223344',
-            'gsm' => '92844871'
+            'gsm' => '92844871',
+            'roles' => [Patient::ROLE_SUPERADIMN],
+            'enabled' => true
         ],
         [
             'firstname' => 'Imen',
@@ -51,7 +54,9 @@ class AppFixtures extends Fixture
             'age' => 20,
             'gender' => 'female',
             'identifier' => '44332211',
-            'gsm' => '50546285'
+            'gsm' => '50546285',
+            'roles' => [Patient::ROLE_WRITER],
+            'enabled' => true
         ],
         [
             'firstname' => 'Amine',
@@ -63,7 +68,9 @@ class AppFixtures extends Fixture
             'age' => 30,
             'gender' => 'male',
             'identifier' => '77889944',
-            'gsm' => '50468457'
+            'gsm' => '50468457',
+            'roles' => [Patient::ROLE_EDITOR],
+            'enabled' => false
         ],
         [
             'firstname' => 'Racha',
@@ -75,14 +82,22 @@ class AppFixtures extends Fixture
             'age' => 23,
             'gender' => 'female',
             'identifier' => '66996699',
-            'gsm' => '78245698'
+            'gsm' => '78245698',
+            'roles' => [Patient::ROLE_ADMIN],
+            'enabled' => true
         ]
     ];
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    /**
+     * @var TokenGenerator
+     */
+    private $tokenGenerator;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder, TokenGenerator $tokenGenerator)
     {
         $this->passwordEncoder = $passwordEncoder;
         $this->faker = Factory::create();
+        $this->tokenGenerator = $tokenGenerator;
     }
 
     public function load(ObjectManager $manager)
@@ -102,10 +117,10 @@ class AppFixtures extends Fixture
         $place = $this->getReference('place_4');
         $travel = $this->getReference('travel_8');
         for ($i=0; $i<50; $i++){
-            $patientReference = $this->getRandomPatientReference();
             $rdv = new Rdv();
             $rdv->setDate($this->faker->dateTimeThisYear);
             $rdv->setResult($this->faker->realText());
+            $patientReference = $this->getRandomPatientReference($rdv);
             $rdv->setPatient($patientReference);
             $rdv->setTravel($travel);
             $rdv->setSymptomes($symp);
@@ -130,6 +145,13 @@ class AppFixtures extends Fixture
             $patient->setGender($user['gender']);
             $patient->setAddress($user['address']);
             $patient->setAge($user['age']);
+            $patient->setEnabled($user['enabled']);
+            if (!$user['enabled']){
+                $patient->setConfirmationToken(
+                    $this->tokenGenerator->getRandomSecureToken()
+                );
+            }
+            $patient->setRoles($user['roles']);
             $this->addReference("patient_".$user['email'], $patient);
             $manager->persist($patient);
         }
@@ -138,7 +160,6 @@ class AppFixtures extends Fixture
 
     public function loadMedicalHistory(ObjectManager $manager){
         for ($i=0; $i<20; $i++){
-                $patientReference = $this->getRandomPatientReference();
                 $medHist = new MedicalHistory();
                 $medHist->setDisease($this->faker->realText());
                 $medHist->setAnalyse1($this->faker->realText());
@@ -148,6 +169,7 @@ class AppFixtures extends Fixture
                 $medHist->setMedecine3($this->faker->realText());
                 $medHist->setScan($this->faker->realText());
                 $medHist->setScan1($this->faker->realText());
+                $patientReference = $this->getRandomPatientReference($medHist);
                 $medHist->setPatient($patientReference);
                 $manager->persist($medHist);
         }
@@ -231,8 +253,14 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
-    public function getRandomPatientReference(): Patient
+    public function getRandomPatientReference($entity): Patient
     {
-        return $this->getReference('patient_'. self::USERS[rand(0, 3)]['email']);
+        $randomUser = self::USERS[rand(0, 3)];
+
+        if (($entity instanceof Rdv || $entity instanceof MedicalHistory) && count(array_intersect($randomUser['roles'], [Patient::ROLE_SUPERADIMN, Patient::ROLE_ADMIN, Patient::ROLE_WRITER]))){
+            return $this->getRandomPatientReference($entity);
+        }
+
+        return $this->getReference('patient_'. $randomUser['email']);
     }
 }

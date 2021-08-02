@@ -2,22 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8fdde9a-0e80-47df-83d2-5f52b02c0df0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210726115833.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210729110210.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/PatientedEntityInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/PublishedDateEntityInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/PatientedEntitySubscriber.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/PublishedDateEntitySubscriber.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210731093159.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210802164633.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210802173858.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/ResetIdentifierAction.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/PatientConfirmation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/PatientConfirmationSubscriber.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Security/PatientEnabledChecker.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Security/TokenAuthenticator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Security/TokenGenerator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Serializer/UserAttributeNormalizer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Serializer/UserContextBuilder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/symfony2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/api_platform.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/api_platform.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/framework.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/MedicalHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MedicalHistory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Patient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Patient.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Rdv.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Rdv.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Symptomes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Symptomes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/PasswordHashSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/PasswordHashSubscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/PasswordHashSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/PatientRegisterSubscriber.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +56,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HierarchyBrowserManager">
+    <option name="SORT_ALPHABETICALLY" value="true" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -255,6 +261,18 @@
       <workItem from="1627590747779" duration="1243000" />
       <workItem from="1627659817892" duration="3981000" />
       <workItem from="1627664550705" duration="169000" />
+      <workItem from="1627664798438" duration="1400000" />
+      <workItem from="1627680654187" duration="1308000" />
+      <workItem from="1627720235652" duration="249000" />
+      <workItem from="1627721525928" duration="3717000" />
+      <workItem from="1627728497684" duration="3633000" />
+      <workItem from="1627807839127" duration="7410000" />
+      <workItem from="1627825588983" duration="6840000" />
+      <workItem from="1627837467779" duration="752000" />
+      <workItem from="1627856846968" duration="2966000" />
+      <workItem from="1627894438545" duration="7643000" />
+      <workItem from="1627920494809" duration="1505000" />
+      <workItem from="1627922329498" duration="10562000" />
     </task>
     <servers />
   </component>
@@ -269,10 +287,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="323" y="151" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/0.0.1366.768@0.0.1366.768" timestamp="1627582110784" />
-    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser" timestamp="1626612256976">
+    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser" timestamp="1627925842392">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1626612256976" />
+    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1627925842392" />
     <state x="317" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1627153754095">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -289,10 +307,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="424" y="0" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0/0.0.1366.768@0.0.1366.768" timestamp="1627403115773" />
-    <state x="402" y="198" key="NewPhpClassDialog" timestamp="1627580683914">
+    <state x="402" y="198" key="NewPhpClassDialog" timestamp="1627946597501">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="402" y="198" key="NewPhpClassDialog/0.0.1366.768@0.0.1366.768" timestamp="1627580683914" />
+    <state x="402" y="198" key="NewPhpClassDialog/0.0.1366.768@0.0.1366.768" timestamp="1627946597501" />
     <state x="517" y="307" key="NewPhpFileDialog" timestamp="1627581600959">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -305,14 +323,14 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.768@0.0.1366.768" timestamp="1627580103117" />
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1627664800088">
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1627922333676">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1627664800088" />
-    <state x="339" y="172" key="run.anything.popup" timestamp="1626881550936">
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1627922333676" />
+    <state x="339" y="172" key="run.anything.popup" timestamp="1627928718283">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="339" y="172" key="run.anything.popup/0.0.1366.768@0.0.1366.768" timestamp="1626881550936" />
+    <state x="339" y="172" key="run.anything.popup/0.0.1366.768@0.0.1366.768" timestamp="1627928718283" />
     <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1627142907162">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

@@ -4,6 +4,7 @@ namespace App\EventSubscriber;
 use ApiPlatform\Core\EventListener\EventPriorities;
 use App\Entity\Patient;
 use App\Entity\Tester;
+use App\Security\TokenGenerator;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -12,15 +13,21 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 
-class PasswordHashSubscriber implements EventSubscriberInterface
+class PatientRegisterSubscriber implements EventSubscriberInterface
 {
     /**
      * @var UserPasswordEncoder
      */
     private $passwordEncoder;
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    /**
+     * @var TokenGenerator
+     */
+    private $tokenGenerator;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder, TokenGenerator $tokenGenerator)
     {
         $this->passwordEncoder = $passwordEncoder;
+        $this->tokenGenerator = $tokenGenerator;
     }
 
     /**
@@ -29,20 +36,25 @@ class PasswordHashSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-          KernelEvents::VIEW => ['hashPassword', EventPriorities::PRE_WRITE]
+          KernelEvents::VIEW => ['patientRegistered', EventPriorities::PRE_WRITE]
         ];
     }
 
-    public function hashPassword(ViewEvent $event){
+    public function patientRegistered(ViewEvent $event){
         $patient = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
 
-        if(!$patient instanceof Patient || !in_array($method, [Request::METHOD_POST, Request::METHOD_PUT])){
+        if(!$patient instanceof Patient || !in_array($method, [Request::METHOD_POST])){
             return;
         }
         // we need to hash the password
         $patient->setIdentifier(
             $this->passwordEncoder->encodePassword($patient, $patient->getIdentifier())
+        );
+
+        // create confirmation token
+        $patient->setConfirmationToken(
+            $this->tokenGenerator->getRandomSecureToken()
         );
     }
 }

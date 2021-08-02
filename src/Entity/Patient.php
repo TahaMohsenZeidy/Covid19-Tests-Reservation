@@ -10,8 +10,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Controller\ResetIdentifierAction;
 
 /**
  * @ApiResource(
@@ -30,6 +32,15 @@ use Symfony\Component\Validator\Constraints as Assert;
  *                "normalization_context"={
  *                     "groups"={"get"}
  *               }
+ *          },
+ *         "put-reset-identifier"={
+ *                "access_control"="is_granted('IS_AUTHENTICATED_FULLY') and object == user",
+ *                "method"="PUT",
+ *                "path"="/patients/{id}/reset-identifier",
+ *                "controller"=ResetIdentifierAction::class,
+ *                "denormalization_context"={
+ *                     "groups"={"put-reset-identifier"}
+ *                }
  *          }
  *      },
  *      collectionOperations={
@@ -51,6 +62,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Patient implements UserInterface
 {
+    const ROLE_WRITER = 'ROLE_WRITER';
+    const ROLE_EDITOR = 'ROLE_EDITOR';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+    const ROLE_SUPERADIMN = 'ROLE_SUPERADIMN';
+
+    const DEFAULT_ROLES = [self::ROLE_WRITER];
 
     /**
      * @ORM\Id
@@ -63,26 +80,27 @@ class Patient implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"get", "put", "post", "get_rdvs_with_all"})
-     * @Assert\Length(min=4, max=255)
-     * @Assert\NotBlank()
+     * @Assert\Length(min=4, max=255, groups={"post"})
+     * @Assert\NotBlank(groups={"post", "put"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"get", "put", "post", "get_rdvs_with_all"})
-     * @Assert\Length(min=4, max=255)
-     * @Assert\NotBlank()
+     * @Assert\Length(min=4, max=255, groups={"post"})
+     * @Assert\NotBlank(groups={"post", "put"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * @Groups({"post", "put"})
+     * @Assert\NotBlank(groups={"post"})
+     * @Groups({"post"})
      * @Assert\Regex(
      *     pattern="/(^[0-9]*$)/",
-     *     message="Identifier must contain at least 8 digits and should not contain letters"
+     *     message="Identifier must contain at least 8 digits and should not contain letters",
+     *     groups={"post"}
      * )
      */
     private $identifier;
@@ -90,37 +108,37 @@ class Patient implements UserInterface
     /**
      * @ORM\Column(type="date")
      * @Groups({"get", "put", "post"})
-     * @Assert\NotBlank()
+     * @Assert\Date(groups={"post", "put"})
+     * @Assert\NotBlank(groups={"post"})
      */
     private $birthdate;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"get", "put", "post"})
-     * @Assert\Length(min=4, max=255)
+     * @Assert\Length(min=4, max=255, groups={"post", "put"})
      * @Assert\NotBlank()
      */
     private $nationality;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"post"})
-     * @Assert\Email()
-     * @Assert\NotBlank()
-     *
+     * @Groups({"post", "get-admin", "get-owner"})
+     * @Assert\Email(groups={"post"})
+     * @Assert\NotBlank(groups={"post"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"get", "put", "post"})
-     * @Assert\Length(min=5, max=255)
+     * @Assert\Length(min=5, max=255, groups={"post", "put"})
      * @Assert\NotBlank()
      */
     private $address;
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"post", "put"})
      * @Groups({"get", "put", "post"})
      */
     private $gsm;
@@ -134,14 +152,14 @@ class Patient implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"post"})
      * @Groups({"get", "put", "post"})
      */
     private $gender;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\MedicalHistory", mappedBy="patient")
-     * @Groups({"get"})
+     * @Groups({"get", "get-admin", "get-owner"})
      * @ApiSubresource()
      */
     private $medical_history;
@@ -153,10 +171,63 @@ class Patient implements UserInterface
      */
     private $rdv;
 
+    /**
+     * @ORM\Column(type="simple_array", length=200)
+     * @Groups({"get-admin", "get-owner"})
+     */
+    private $roles;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $identifierChangeDate;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
+
+    /**
+     * @Assert\NotBlank(groups={"put-reset-identifier"})
+     * @Groups({"put-reset-identifier"})
+     * @Assert\Regex(
+     *     pattern="/(^[0-9]*$)/",
+     *     message="Identifier must contain at least 8 digits and should not contain letters",
+     *     groups={"put-reset-identifier"}
+     * )
+     */
+    private $newIdentifier;
+
+    /**
+     * @Groups({"put-reset-identifier"})
+     * @Assert\NotBlank(groups={"put-reset-identifier"})
+     * @Assert\Expression(
+     *     "this.getNewIdentifier() === this.getNewRetypedIdentifier()",
+     *     message="Identifiers does not match",
+     *     groups={"put-reset-identifier"}
+     * )
+     */
+    private $newRetypedIdentifier;
+
+    /**
+     * @Groups({"put-reset-identifier"})
+     * @Assert\NotBlank(groups={"put-reset-identifier"})
+     * @UserPassword(groups={"put-reset-identifier"})
+     */
+    private $oldIdentifier;
+
+    /**
+     * @ORM\Column(type="string", length=40, nullable=true)
+     */
+    private $confirmationToken;
+
     public function __construct()
     {
         $this->rdv = new ArrayCollection();
         $this->medical_history = new ArrayCollection();
+        $this->roles = self::DEFAULT_ROLES;
+        $this->enabled = false;
+        $this->confirmationToken = null;
     }
     /**
      * @return mixed
@@ -274,37 +345,92 @@ class Patient implements UserInterface
     {
         return $this->rdv;
     }
-    /**
-     * @inheritDoc
-     */
-    public function getRoles()
+
+    public function getRoles(): array
     {
-        return ['ROLE_USER'];
+        return $this->roles;
     }
-    /**
-     * @inheritDoc
-     */
+
+    public function setRoles(array $roles){
+        $this->roles = $roles;
+    }
+
+
     public function getPassword()
     {
         return $this->identifier;
     }
-    /**
-     * @inheritDoc
-     */
+
     public function getSalt()
     {
         return null;
     }
-    /**
-     * @inheritDoc
-     */
+
     public function eraseCredentials(){}
-    /**
-     * @inheritDoc
-     */
+
     public function getUsername(): ?string
     {
         return $this->email;
     }
     public function __call($name, $arguments){}
+
+    public function getNewIdentifier(): ?string
+    {
+        return $this->newIdentifier;
+    }
+
+    public function setNewIdentifier($newIdentifier): void
+    {
+        $this->newIdentifier = $newIdentifier;
+    }
+
+    public function getNewRetypedIdentifier(): ?string
+    {
+        return $this->newRetypedIdentifier;
+    }
+
+    public function setNewRetypedIdentifier($newRetypedIdentifier): void
+    {
+        $this->newRetypedIdentifier = $newRetypedIdentifier;
+    }
+
+    public function getOldIdentifier(): ?string
+    {
+        return $this->oldIdentifier;
+    }
+
+    public function setOldIdentifier($oldIdentifier): void
+    {
+        $this->oldIdentifier = $oldIdentifier;
+    }
+
+    public function getIdentifierChangeDate()
+    {
+        return $this->identifierChangeDate;
+    }
+
+    public function setIdentifierChangeDate($identifierChangeDate): void
+    {
+        $this->identifierChangeDate = $identifierChangeDate;
+    }
+
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): void
+    {
+        $this->enabled = $enabled;
+    }
+
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
+    }
+
+    public function setConfirmationToken($confirmationToken): void
+    {
+        $this->confirmationToken = $confirmationToken;
+    }
 }
