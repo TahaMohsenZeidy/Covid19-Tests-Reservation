@@ -2,6 +2,7 @@
 namespace App\EventSubscriber;
 
 use ApiPlatform\Core\EventListener\EventPriorities;
+use App\Email\Mailer;
 use App\Entity\Patient;
 use App\Entity\Tester;
 use App\Security\TokenGenerator;
@@ -24,10 +25,20 @@ class PatientRegisterSubscriber implements EventSubscriberInterface
      */
     private $tokenGenerator;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder, TokenGenerator $tokenGenerator)
+    /**
+     * @var Mailer
+     */
+    private $mailer;
+
+    public function __construct(
+        UserPasswordEncoderInterface $passwordEncoder,
+        TokenGenerator $tokenGenerator,
+        Mailer $mailer
+    )
     {
         $this->passwordEncoder = $passwordEncoder;
         $this->tokenGenerator = $tokenGenerator;
+        $this->mailer = $mailer;
     }
 
     /**
@@ -56,5 +67,8 @@ class PatientRegisterSubscriber implements EventSubscriberInterface
         $patient->setConfirmationToken(
             $this->tokenGenerator->getRandomSecureToken()
         );
+
+        // Send e-mail here...
+        $this->mailer->sendConfirmationEmail($patient);
     }
 }

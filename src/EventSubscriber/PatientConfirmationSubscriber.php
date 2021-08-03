@@ -4,24 +4,23 @@ namespace App\EventSubscriber;
 
 use ApiPlatform\Core\EventListener\EventPriorities;
 use App\Entity\PatientConfirmation;
-use App\Security\UserConfirmationService;
+use App\Security\PatientConfirmationService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class UserConfirmationSubscriber implements EventSubscriberInterface
+class PatientConfirmationSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var UserConfirmationService
-     */
-    private $userConfirmationService;
 
-    public function __construct(
-        UserConfirmationService $userConfirmationService
-    ) {
-        $this->userConfirmationService = $userConfirmationService;
+    /**
+     * @var PatientConfirmationService
+     */
+    private $confirmationService;
+
+    public function __construct(PatientConfirmationService $confirmationService) {
+        $this->confirmationService = $confirmationService;
     }
 
     public static function getSubscribedEvents()
@@ -42,11 +41,10 @@ class UserConfirmationSubscriber implements EventSubscriberInterface
             $request->get('_route')) {
             return;
         }
-
-        /** @var UserConfirmation $confirmationToken */
+        /** @var PatientConfirmation $confirmationToken */
         $confirmationToken = $event->getControllerResult();
 
-        $this->userConfirmationService->confirmUser(
+        $this->confirmationService->confirmUser(
             $confirmationToken->confirmationToken
         );
 
