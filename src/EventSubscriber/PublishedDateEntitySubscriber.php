@@ -24,7 +24,7 @@ class PublishedDateEntitySubscriber implements EventSubscriberInterface
         $method = $event->getRequest()->getMethod();
         $dateTime = new \DateTime();
 
-        if ($entity instanceof Rdv || Request::METHOD_POST !== $method) {
+        if (!$entity instanceof Rdv || Request::METHOD_POST !== $method) {
             return;
         }
         $entity->setDate($dateTime);

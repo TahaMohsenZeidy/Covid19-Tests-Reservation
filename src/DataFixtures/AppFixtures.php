@@ -162,13 +162,9 @@ class AppFixtures extends Fixture
         for ($i=0; $i<20; $i++){
                 $medHist = new MedicalHistory();
                 $medHist->setDisease($this->faker->realText());
-                $medHist->setAnalyse1($this->faker->realText());
-                $medHist->setAnalyse($this->faker->realText());
                 $medHist->setMedecine1($this->faker->realText());
                 $medHist->setMedecine2($this->faker->realText());
                 $medHist->setMedecine3($this->faker->realText());
-                $medHist->setScan($this->faker->realText());
-                $medHist->setScan1($this->faker->realText());
                 $patientReference = $this->getRandomPatientReference($medHist);
                 $medHist->setPatient($patientReference);
                 $manager->persist($medHist);

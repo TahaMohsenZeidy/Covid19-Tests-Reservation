@@ -46,7 +46,7 @@ class PatientedEntitySubscriber implements EventSubscriberInterface
         /** @var UserInterface $patient */
         $patient = $this->tokenStorage->getToken()->getUser();
 
-        if ((!$entity instanceof Rdv && !$entity instanceof MedicalHistory) || Request::METHOD_POST === $method){
+        if ((!$entity instanceof Rdv || !$entity instanceof MedicalHistory) || Request::METHOD_POST === $method){
             return;
         }
 

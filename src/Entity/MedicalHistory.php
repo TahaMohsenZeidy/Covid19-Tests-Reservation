@@ -3,14 +3,19 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\MedicalHistoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
+ *     attributes={"order"={"id": "DESC"}},
  *     normalizationContext={"groups"={"get"}},
  *     itemOperations={
+ *         "put",
  *         "get"={
  *              "normalization_context"={
  *                  "groups"={"get"}
@@ -68,28 +73,12 @@ class MedicalHistory
     private $medecine3;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"get", "post"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Image")
+     * @ORM\JoinTable()
+     * @Groups({"post", "get"})
+     * @ApiSubresource()
      */
-    private $scan;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"get", "post"})
-     */
-    private $scan1;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"get", "post"})
-     */
-    private $analyse;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"get", "post"})
-     */
-    private $analyse1;
+    private $images;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Patient", inversedBy="medical_history")
@@ -98,11 +87,16 @@ class MedicalHistory
      */
     private $patient;
 
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
     public function getPatient(): ?Patient
     {
         return $this->patient;
     }
-
 
     public function setPatient(?Patient $patient): self
     {
@@ -165,51 +159,18 @@ class MedicalHistory
         return $this;
     }
 
-    public function getScan(): ?string
+
+    public function getImages(): Collection
     {
-        return $this->scan;
+        return $this->images;
     }
 
-    public function setScan(?string $scan): self
-    {
-        $this->scan = $scan;
-
-        return $this;
+    public function addImage(Image $image){
+        $this->images->add($image);
     }
 
-    public function getScan1(): ?string
-    {
-        return $this->scan1;
+    public function removeImage(Image $image){
+        $this->images->removeElement($image);
     }
 
-    public function setScan1(?string $scan1): self
-    {
-        $this->scan1 = $scan1;
-
-        return $this;
-    }
-
-    public function getAnalyse(): ?string
-    {
-        return $this->analyse;
-    }
-
-    public function setAnalyse(?string $analyse): self
-    {
-        $this->analyse = $analyse;
-
-        return $this;
-    }
-
-    public function getAnalyse1(): ?string
-    {
-        return $this->analyse1;
-    }
-
-    public function setAnalyse1(?string $analyse1): self
-    {
-        $this->analyse1 = $analyse1;
-
-        return $this;
-    }
 }

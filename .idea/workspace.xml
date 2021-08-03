@@ -2,26 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8fdde9a-0e80-47df-83d2-5f52b02c0df0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/packages/dev/swiftmailer.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/swiftmailer.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/test/swiftmailer.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Email/Mailer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exception/EmptyBodyException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exception/InvalidConfirmationTokenException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Security/PatientConfirmationService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Email/confirmation.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210803180343.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210803222302.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/61099edb5f9d3673222274.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/61099fa1304d9265265083.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/UploadImageAction.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Image.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/ImageType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/internshipProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/internshipProject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/PatientConfirmationSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/PatientConfirmationSubscriber.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/PatientRegisterSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/PatientRegisterSubscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/MedicalHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MedicalHistory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Rdv.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Rdv.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/PatientedEntitySubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/PatientedEntitySubscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/PublishedDateEntitySubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/PublishedDateEntitySubscriber.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,6 +167,9 @@
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
       <path value="$PROJECT_DIR$/vendor/symfony/swiftmailer-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
+      <path value="$PROJECT_DIR$/vendor/jms/metadata" />
     </include_path>
   </component>
   <component name="ProjectId" id="1utNTaKwpGWX3jOloUTqtxJgmXe" />
@@ -278,7 +281,9 @@
       <workItem from="1627894438545" duration="7643000" />
       <workItem from="1627920494809" duration="1505000" />
       <workItem from="1627922329498" duration="10562000" />
-      <workItem from="1627979474537" duration="7728000" />
+      <workItem from="1627979474537" duration="7932000" />
+      <workItem from="1627988012229" duration="1082000" />
+      <workItem from="1628013459303" duration="10254000" />
     </task>
     <servers />
   </component>
@@ -293,10 +298,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="323" y="151" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/0.0.1366.768@0.0.1366.768" timestamp="1627582110784" />
-    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser" timestamp="1627925842392">
+    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser" timestamp="1628029192537">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1627925842392" />
+    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1628029192537" />
     <state x="317" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1627153754095">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -313,10 +318,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="424" y="0" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0/0.0.1366.768@0.0.1366.768" timestamp="1627403115773" />
-    <state x="402" y="198" key="NewPhpClassDialog" timestamp="1627987785471">
+    <state x="402" y="198" key="NewPhpClassDialog" timestamp="1628014390456">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="402" y="198" key="NewPhpClassDialog/0.0.1366.768@0.0.1366.768" timestamp="1627987785471" />
+    <state x="402" y="198" key="NewPhpClassDialog/0.0.1366.768@0.0.1366.768" timestamp="1628014390456" />
     <state x="517" y="307" key="NewPhpFileDialog" timestamp="1627581600959">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -329,17 +334,17 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.768@0.0.1366.768" timestamp="1627580103117" />
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1627979476720">
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1628013464147">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1627979476720" />
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1628013464147" />
     <state x="339" y="172" key="run.anything.popup" timestamp="1627928718283">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="339" y="172" key="run.anything.popup/0.0.1366.768@0.0.1366.768" timestamp="1627928718283" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1627142907162">
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1627990630680">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1627142907162" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1627990630680" />
   </component>
 </project>
