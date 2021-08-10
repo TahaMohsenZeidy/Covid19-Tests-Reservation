@@ -201,4 +201,8 @@ class Tester implements UserInterface
     {
         // TODO: Implement @method string getUserIdentifier()
     }
+
+    public function getElecmail(){
+        return $this->elecmail;
+    }
 }

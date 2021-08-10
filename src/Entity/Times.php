@@ -1,11 +1,20 @@
 <?php
 
 namespace App\Entity;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TimesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 
 /**
+ * @ApiFilter(
+ *     DateFilter::class,
+ *     properties={
+ *         "timeBegin"
+ *     }
+ * )
  * @ApiResource(
  *     collectionOperations={"get"},
  *     itemOperations={"get"}
@@ -23,13 +32,15 @@ class Times
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"get"})
      */
-    private $time;
+    private $timeBegin;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
+     * @Groups({"get"})
      */
-    private $date;
+    private $timeFinish;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Place", inversedBy="times")
@@ -58,28 +69,25 @@ class Times
         return $this->id;
     }
 
-    public function getTime(): ?\DateTimeInterface
+    public function getTimeBegin()
     {
-        return $this->time;
+        return $this->timeBegin;
     }
 
-    public function setTime(\DateTimeInterface $time): self
+    public function getTimeFinish()
     {
-        $this->time = $time;
-
-        return $this;
+        return $this->timeFinish;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function setTimeBegin($timeBegin): void
     {
-        return $this->date;
+        $this->timeBegin = $timeBegin;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setTimeFinish($timeFinish): void
     {
-        $this->date = $date;
-
-        return $this;
+        $this->timeFinish = $timeFinish;
     }
+
 
 }

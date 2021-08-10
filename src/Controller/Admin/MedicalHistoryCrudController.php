@@ -2,17 +2,19 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Rdv;
+use App\Entity\MedicalHistory;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
-
-class RdvCrudController extends AbstractCrudController
+class MedicalHistoryCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Rdv::class;
+        return MedicalHistory::class;
     }
 
 
@@ -20,12 +22,9 @@ class RdvCrudController extends AbstractCrudController
     {
         return [
             Field::new('id'),
-            AssociationField::new('symptomes'),
-            AssociationField::new('travel'),
-            AssociationField::new('patient'),
-            AssociationField::new('place'),
-            Field::new('date'),
-            Field::new('result')
+            Field::new('disease'),
+            Field::new('medecine1'),
+            Field::new('medecine2'),
         ];
     }
 

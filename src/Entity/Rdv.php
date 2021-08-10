@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * 
  * @ApiResource(
- *     attributes={"order"={"date": "DESC"}},
+ *     attributes={"order"={"date": "DESC"}, "pagination_partial"=true},
  *     itemOperations={
  *         "get"={
  *              "normalization_context"={
@@ -144,5 +144,10 @@ class Rdv
     {
         $this->result = $result;
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->result;
     }
 }

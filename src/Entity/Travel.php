@@ -84,4 +84,10 @@ class Travel
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+//        return date_format($this->fly_date, 'Y-m-d H:i:s');
+        return $this->destination;
+    }
 }

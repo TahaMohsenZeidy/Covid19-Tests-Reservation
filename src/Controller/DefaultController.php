@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Security\PatientConfirmationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**

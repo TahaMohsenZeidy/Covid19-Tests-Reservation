@@ -43,6 +43,7 @@ class UploadImageAction
         // Validate the form
         $form = $this->formFactory->create(ImageType::class, $image);
         $form->handleRequest($request);
+        // we need to retry doing this.
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Persist the new Image entity

@@ -40,7 +40,8 @@ use App\Controller\ResetIdentifierAction;
  *                "controller"=ResetIdentifierAction::class,
  *                "denormalization_context"={
  *                     "groups"={"put-reset-identifier"}
- *                }
+ *                },
+ *                "validation_groups"={"post"}
  *          }
  *      },
  *      collectionOperations={
@@ -50,7 +51,8 @@ use App\Controller\ResetIdentifierAction;
  *              },
  *              "normalization_context"={
  *                  "groups"={"get"}
- *              }
+ *              },
+ *              "validation_groups"={"post"}
  *         }
  *     }
  * )
@@ -433,4 +435,11 @@ class Patient implements UserInterface
     {
         $this->confirmationToken = $confirmationToken;
     }
+
+    public function __toString(): string
+    {
+        return $this->firstname. " ". $this->lastname;
+    }
+
+
 }

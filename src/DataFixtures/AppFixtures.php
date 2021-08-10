@@ -1,6 +1,7 @@
 <?php
 
 namespace App\DataFixtures;
+use App\Entity\Image;
 use App\Entity\MedicalHistory;
 use App\Entity\Patient;
 use App\Entity\Place;
@@ -103,6 +104,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $this->loadPatients($manager);
+//        $this->loadImages($manager);
         $this->loadMedicalHistory($manager);
         $this->loadSymptomes($manager);
         $this->loadPlace($manager);
@@ -112,6 +114,15 @@ class AppFixtures extends Fixture
         $this->loadRdvs($manager);
     }
 
+//    public function loadImages(ObjectManager $manager){
+//        $image = new Image();
+//        $image->setFile(null);
+//        $image->setUrl('h.png');
+//        $this->addReference('image', $image);
+//        $manager->persist($image);
+//        $manager->flush();
+//    }
+
     public function loadRdvs(ObjectManager $manager){
         $symp = $this->getReference('symp_3');
         $place = $this->getReference('place_4');
@@ -119,7 +130,8 @@ class AppFixtures extends Fixture
         for ($i=0; $i<50; $i++){
             $rdv = new Rdv();
             $rdv->setDate($this->faker->dateTimeThisYear);
-            $rdv->setResult($this->faker->realText());
+            $pick = ['positive', 'negative'];
+            $rdv->setResult($pick[rand(0, 1)]);
             $patientReference = $this->getRandomPatientReference($rdv);
             $rdv->setPatient($patientReference);
             $rdv->setTravel($travel);
@@ -159,6 +171,7 @@ class AppFixtures extends Fixture
     }
 
     public function loadMedicalHistory(ObjectManager $manager){
+//        $image = $this->getReference('image');
         for ($i=0; $i<20; $i++){
                 $medHist = new MedicalHistory();
                 $medHist->setDisease($this->faker->realText());
@@ -167,6 +180,7 @@ class AppFixtures extends Fixture
                 $medHist->setMedecine3($this->faker->realText());
                 $patientReference = $this->getRandomPatientReference($medHist);
                 $medHist->setPatient($patientReference);
+//                $medHist->addImage($image);
                 $manager->persist($medHist);
         }
         $manager->flush();
@@ -199,9 +213,11 @@ class AppFixtures extends Fixture
             $place = new Place();
             $place->setCountry($this->faker->country);
             $place->setFloor($this->faker->buildingNumber);
-            $place->setResult($this->faker->realText("negative"));
+            $pick = ['positive', 'negative'];
+            $place->setResult($pick[rand(0, 1)]);
             $place->setRoom($this->faker->randomNumber());
             $place->setKit($this->faker->randomNumber());
+            $place->setName("Sbitar Rabta");
             $this->addReference("place_$i", $place);
             $manager->persist($place);
         }
@@ -241,8 +257,8 @@ class AppFixtures extends Fixture
         $place = $this->getReference('place_4');
         for ($i=0; $i<10; $i++){
             $times = new Times();
-            $times->setDate($this->faker->dateTimeThisYear);
-            $times->setTime($this->faker->dateTimeThisYear);
+            $times->setTimeBegin($this->faker->dateTimeThisYear);
+            $times->setTimeFinish($this->faker->dateTimeThisYear);
             $times->setPlace($place);
             $manager->persist($times);
         }

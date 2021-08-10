@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\PlaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
@@ -26,11 +28,13 @@ class Place
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Times", mappedBy="place")
+     * @ApiSubresource()
      */
     private $times;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Tester", mappedBy="place")
+     * @ApiSubresource()
      */
     private $tester;
 
@@ -48,6 +52,11 @@ class Place
      * @ORM\Column(type="string", length=255)
      */
     private $floor;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
 
     /**
      * @ORM\Column(type="integer")
@@ -164,6 +173,21 @@ class Place
     {
         $this->result = $result;
         return $this;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    public function setName($name): void
+    {
+        $this->name = $name;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 
 }

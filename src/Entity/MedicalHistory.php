@@ -12,7 +12,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     attributes={"order"={"id": "DESC"}},
+ *     attributes={"order"={"id": "DESC"},
+ *         "pagination_client_enabled"=true,
+ *         "pagination_client_items_per_page"=true
+ *     },
  *     normalizationContext={"groups"={"get"}},
  *     itemOperations={
  *         "put",
@@ -73,25 +76,11 @@ class MedicalHistory
     private $medecine3;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Image")
-     * @ORM\JoinTable()
-     * @Groups({"post", "get"})
-     * @ApiSubresource()
-     */
-    private $images;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Patient", inversedBy="medical_history")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"post"})
      */
     private $patient;
-
-
-    public function __construct()
-    {
-        $this->images = new ArrayCollection();
-    }
 
     public function getPatient(): ?Patient
     {
@@ -112,7 +101,7 @@ class MedicalHistory
     public function getDisease(): ?string
     {
         if ($this->disease == null){
-            echo("hooooooooooh");
+            echo("the disease is null");
         }
         return $this->disease;
     }
@@ -159,18 +148,9 @@ class MedicalHistory
         return $this;
     }
 
-
-    public function getImages(): Collection
+    public function __toString()
     {
-        return $this->images;
-    }
-
-    public function addImage(Image $image){
-        $this->images->add($image);
-    }
-
-    public function removeImage(Image $image){
-        $this->images->removeElement($image);
+        return $this->id;
     }
 
 }
