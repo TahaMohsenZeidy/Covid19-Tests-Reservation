@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * 
  * @ApiResource(
- *     attributes={"order"={"date": "DESC"}, "pagination_partial"=true},
+ *     attributes={"order"={"date": "DESC"}},
  *     itemOperations={
  *         "get"={
  *              "normalization_context"={

@@ -6,9 +6,7 @@ use App\Entity\MedicalHistory;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use Vich\UploaderBundle\Form\Type\VichImageType;
+
 
 class MedicalHistoryCrudController extends AbstractCrudController
 {
@@ -25,6 +23,7 @@ class MedicalHistoryCrudController extends AbstractCrudController
             Field::new('disease'),
             Field::new('medecine1'),
             Field::new('medecine2'),
+            AssociationField::new('images')
         ];
     }
 

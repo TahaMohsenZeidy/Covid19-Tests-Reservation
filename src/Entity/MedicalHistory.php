@@ -82,6 +82,45 @@ class MedicalHistory
      */
     private $patient;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Image")
+     * @ORM\JoinTable()
+     * @Groups({"post", "get"})
+     * @ApiSubresource()
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image){
+        $this->images->add($image);
+        return $this;
+    }
+
+    public function removeImage(Image $image){
+        $this->images->removeElement($image);
+        return $this;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
     public function getPatient(): ?Patient
     {
         return $this->patient;
@@ -100,9 +139,6 @@ class MedicalHistory
 
     public function getDisease(): ?string
     {
-        if ($this->disease == null){
-            echo("the disease is null");
-        }
         return $this->disease;
     }
 
@@ -120,7 +156,6 @@ class MedicalHistory
     public function setMedecine1(string $medecine1): self
     {
         $this->medecine1 = $medecine1;
-
         return $this;
     }
 

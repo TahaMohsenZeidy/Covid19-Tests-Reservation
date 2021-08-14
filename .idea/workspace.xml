@@ -2,59 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8fdde9a-0e80-47df-83d2-5f52b02c0df0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/packages/dev/monolog.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/prod/deprecations.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/prod/monolog.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/test/monolog.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210804090617.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210807141532.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210809110630.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210810092858.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210810101151.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/611257ea6eb9e391596906.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/611257870c689437501501.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/6112589c23979899921821.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/ImageCrudController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/MedicalHistoryCrudController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/PatientCrudController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/PlaceCrudController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/SymptomesCrudController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/TesterCrudController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/TimesCrudController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/TravelCrudController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/AdminSecurityController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventListener/AuthenticationSuccessListener.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventListener/ExceptionListener.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/EmptyBodySubscriber.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/internshipProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/internshipProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210810105300.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/api_platform.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/api_platform.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/61099edb5f9d3673222274.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/61099fa1304d9265265083.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/RdvCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/RdvCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UploadImageAction.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UploadImageAction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Image.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/MedicalHistoryCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/MedicalHistoryCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/PlaceCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/PlaceCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/MedicalHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MedicalHistory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Patient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Patient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Place.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Place.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Rdv.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Rdv.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Symptomes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Symptomes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Tester.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tester.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Times.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Times.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Travel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Travel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ImageType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ImageType.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +36,9 @@
     </option>
     <expand />
     <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="internshipProject" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -219,6 +178,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -346,7 +306,16 @@
       <workItem from="1628506313497" duration="10191000" />
       <workItem from="1628524289745" duration="3409000" />
       <workItem from="1628584292251" duration="7146000" />
-      <workItem from="1628591788331" duration="718000" />
+      <workItem from="1628591788331" duration="2677000" />
+      <workItem from="1628615594785" duration="2685000" />
+      <workItem from="1628690025190" duration="193000" />
+      <workItem from="1628690741502" duration="2774000" />
+      <workItem from="1628756589180" duration="2427000" />
+      <workItem from="1628761042318" duration="686000" />
+      <workItem from="1628779115156" duration="256000" />
+      <workItem from="1628780003935" duration="2332000" />
+      <workItem from="1628787685352" duration="1146000" />
+      <workItem from="1628932803603" duration="4786000" />
     </task>
     <servers />
   </component>
@@ -357,14 +326,18 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="275" y="42" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1628593940417">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="275" y="42" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768@0.0.1366.768" timestamp="1628593940417" />
     <state x="323" y="151" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog" timestamp="1627582110784">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="323" y="151" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/0.0.1366.768@0.0.1366.768" timestamp="1627582110784" />
-    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser" timestamp="1628527966313">
+    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser" timestamp="1628758961347">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1628527966313" />
+    <state x="488" y="100" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1628758961347" />
     <state x="244" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1628584980737">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -393,21 +366,21 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="184" y="26" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1628585673768" />
-    <state width="498" height="446" key="SwitcherDM" timestamp="1627580103117">
+    <state width="498" height="446" key="SwitcherDM" timestamp="1628615676864">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="498" height="446" key="SwitcherDM/0.0.1366.768@0.0.1366.768" timestamp="1627580103117" />
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1628591789781">
+    <state width="498" height="446" key="SwitcherDM/0.0.1366.768@0.0.1366.768" timestamp="1628615676864" />
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1628932808580">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1628591789781" />
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1628932808580" />
     <state x="339" y="172" key="run.anything.popup" timestamp="1628516028793">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="339" y="172" key="run.anything.popup/0.0.1366.768@0.0.1366.768" timestamp="1628516028793" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1628591950491">
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1628691860681">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1628591950491" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1628691860681" />
   </component>
 </project>
