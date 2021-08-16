@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8fdde9a-0e80-47df-83d2-5f52b02c0df0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210810105300.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/MedicalHistoryCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/MedicalHistoryCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/PlaceCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/PlaceCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/MedicalHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MedicalHistory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Rdv.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Rdv.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ImageType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ImageType.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,6 +308,8 @@
       <workItem from="1628780003935" duration="2332000" />
       <workItem from="1628787685352" duration="1146000" />
       <workItem from="1628932803603" duration="4786000" />
+      <workItem from="1629137588586" duration="399000" />
+      <workItem from="1629138030925" duration="135000" />
     </task>
     <servers />
   </component>
@@ -370,10 +364,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.768@0.0.1366.768" timestamp="1628615676864" />
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1628932808580">
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1629138031800">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1628932808580" />
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1629138031800" />
     <state x="339" y="172" key="run.anything.popup" timestamp="1628516028793">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
