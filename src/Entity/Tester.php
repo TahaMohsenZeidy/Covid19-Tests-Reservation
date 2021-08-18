@@ -37,6 +37,7 @@ class Tester implements UserInterface
      * @Groups({"read"})
      * @Assert\NotBlank()
      * @Assert\Length(min=4, max=255)
+     * @Groups({"get_rdvs_with_all"})
      */
     private $firstname;
 
@@ -45,6 +46,7 @@ class Tester implements UserInterface
      * @Groups({"read"})
      * @Assert\NotBlank()
      * @Assert\Length(min=4, max=255)
+     * @Groups({"get_rdvs_with_all"})
      */
     private $lastname;
 
@@ -59,7 +61,7 @@ class Tester implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"read"})
+     * @Groups({"read", "get_rdvs_with_all"})
      * @Assert\NotBlank()
      * @Assert\Length(min=4, max=255)
      */

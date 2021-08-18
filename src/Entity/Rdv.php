@@ -63,14 +63,14 @@ class Rdv
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Travel", inversedBy="rdv")
      * @ORM\JoinColumn(nullable=true)
-     * @Groups({"post"})
+     * @Groups({"post", "get_rdvs_with_all"})
      */
     private $travel;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Place", inversedBy="rdv")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"post"})
+     * @Groups({"post", "get_rdvs_with_all"})
      */
     private $place;
 

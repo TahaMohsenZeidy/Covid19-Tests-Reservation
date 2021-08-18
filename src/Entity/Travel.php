@@ -7,6 +7,7 @@ use App\Repository\TravelRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
@@ -26,11 +27,13 @@ class Travel
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"get_rdvs_with_all"})
      */
     private $fly_date;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get_rdvs_with_all"})
      */
     private $destination;
 

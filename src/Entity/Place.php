@@ -35,6 +35,7 @@ class Place
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Tester", mappedBy="place")
      * @ApiSubresource()
+     * @Groups({"get_rdvs_with_all"})
      */
     private $tester;
 
@@ -45,16 +46,19 @@ class Place
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get_rdvs_with_all"})
      */
     private $room;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get_rdvs_with_all"})
      */
     private $floor;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get_rdvs_with_all"})
      */
     private $name;
 
@@ -65,6 +69,7 @@ class Place
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get_rdvs_with_all"})
      */
     private $country;
 

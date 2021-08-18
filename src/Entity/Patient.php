@@ -109,7 +109,7 @@ class Patient implements UserInterface
 
     /**
      * @ORM\Column(type="date")
-     * @Groups({"get", "put", "post"})
+     * @Groups({"get", "put", "post", "get_rdvs_with_all"})
      * @Assert\Date(groups={"post", "put"})
      * @Assert\NotBlank(groups={"post"})
      */
@@ -117,7 +117,7 @@ class Patient implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"get", "put", "post"})
+     * @Groups({"get", "put", "post", "get_rdvs_with_all"})
      * @Assert\Length(min=4, max=255, groups={"post", "put"})
      * @Assert\NotBlank()
      */
@@ -133,14 +133,14 @@ class Patient implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"get", "put", "post"})
+     * @Groups({"get", "put", "post", "get_rdvs_with_all"})
      * @Assert\Length(min=5, max=255, groups={"post", "put"})
      * @Assert\NotBlank()
      */
     private $address;
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(groups={"post", "put"})
+     * @Assert\NotBlank(groups={"post", "put", "get_rdvs_with_all"})
      * @Groups({"get", "put", "post"})
      */
     private $gsm;
@@ -148,14 +148,14 @@ class Patient implements UserInterface
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
-     * @Groups({"get", "put", "post"})
+     * @Groups({"get", "put", "post", "get_rdvs_with_all"})
      */
     private $age;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(groups={"post"})
-     * @Groups({"get", "put", "post"})
+     * @Groups({"get", "put", "post", "get_rdvs_with_all"})
      */
     private $gender;
 
