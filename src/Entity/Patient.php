@@ -110,7 +110,6 @@ class Patient implements UserInterface
     /**
      * @ORM\Column(type="date")
      * @Groups({"get", "put", "post", "get_rdvs_with_all"})
-     * @Assert\Date(groups={"post", "put"})
      * @Assert\NotBlank(groups={"post"})
      */
     private $birthdate;
