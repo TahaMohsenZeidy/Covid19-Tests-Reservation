@@ -23,8 +23,6 @@ class TokenAuthenticator extends JWTTokenAuthenticator
             $userProvider
         );
 
-        var_dump($preAuthToken->getPayload());
-
         if ($patient->getIdentifierChangeDate() &&
             $preAuthToken->getPayload()['iat'] < $patient->getIdentifierChangeDate()
         ) {

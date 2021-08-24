@@ -55,7 +55,6 @@ class UserContextBuilder implements SerializerContextBuilderInterface
         ) {
             $context['groups'][] = 'get-admin';
         }
-
         return $context;
     }
 }
