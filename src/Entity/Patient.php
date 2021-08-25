@@ -58,8 +58,8 @@ use App\Controller\ResetIdentifierAction;
  * )
  * @ORM\Entity(repositoryClass=PatientRepository::class)
  * @method string getUserIdentifier()
- * @UniqueEntity("email")
- * @UniqueEntity("gsm")
+ * @UniqueEntity("email", groups={"post", "put"})
+ * @UniqueEntity("gsm", groups={"post", "put"})
  */
 
 class Patient implements UserInterface
