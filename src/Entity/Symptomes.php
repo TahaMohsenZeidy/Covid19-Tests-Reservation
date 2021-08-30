@@ -20,9 +20,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *      },
  *     collectionOperations={
  *         "get",
- *         "post"={
- *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY')"
- *          }
+ *         "post"
  *      }
  * )
  * @ORM\Entity(repositoryClass=SymptomesRepository::class)
