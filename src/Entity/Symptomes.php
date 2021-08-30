@@ -77,7 +77,7 @@ class Symptomes
     /**
      * @ORM\Column(type="boolean")
      */
-    private $muscle_pain;
+    private $musclepain;
 
     /**
      * @ORM\Column(type="boolean")
@@ -88,23 +88,23 @@ class Symptomes
      * @ORM\Column(type="boolean")
      * @Groups({"get_rdvs_with_all"})
      */
-    private $hard_breathing;
+    private $hardbreathing;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $abdominal_pain;
+    private $abdominalpain;
 
     /**
      * @ORM\Column(type="boolean")
      * @Groups({"get_rdvs_with_all"})
      */
-    private $mass_gathering;
+    private $massgathering;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $case_contact;
+    private $casecontact;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Rdv", mappedBy="symptomes")
@@ -221,12 +221,12 @@ class Symptomes
 
     public function getMusclePain(): ?bool
     {
-        return $this->muscle_pain;
+        return $this->musclepain;
     }
 
-    public function setMusclePain(bool $muscle_pain): self
+    public function setMusclePain(bool $musclepain): self
     {
-        $this->muscle_pain = $muscle_pain;
+        $this->musclepain = $musclepain;
 
         return $this;
     }
@@ -245,48 +245,48 @@ class Symptomes
 
     public function getHardBreathing(): ?bool
     {
-        return $this->hard_breathing;
+        return $this->hardbreathing;
     }
 
-    public function setHardBreathing(bool $hard_breathing): self
+    public function setHardBreathing(bool $hardbreathing): self
     {
-        $this->hard_breathing = $hard_breathing;
+        $this->hardbreathing = $hardbreathing;
 
         return $this;
     }
 
     public function getAbdominalPain(): ?bool
     {
-        return $this->abdominal_pain;
+        return $this->abdominalpain;
     }
 
-    public function setAbdominalPain(bool $abdominal_pain): self
+    public function setAbdominalPain(bool $abdominalpain): self
     {
-        $this->abdominal_pain = $abdominal_pain;
+        $this->abdominalpain = $abdominalpain;
 
         return $this;
     }
 
     public function getMassGathering(): ?bool
     {
-        return $this->mass_gathering;
+        return $this->massgathering;
     }
 
-    public function setMassGathering(bool $mass_gathering): self
+    public function setMassGathering(bool $massgathering): self
     {
-        $this->mass_gathering = $mass_gathering;
+        $this->massgathering = $massgathering;
 
         return $this;
     }
 
     public function getCaseContact(): ?bool
     {
-        return $this->case_contact;
+        return $this->casecontact;
     }
 
-    public function setCaseContact(bool $case_contact): self
+    public function setCaseContact(bool $casecontact): self
     {
-        $this->case_contact = $case_contact;
+        $this->casecontact = $casecontact;
 
         return $this;
     }
