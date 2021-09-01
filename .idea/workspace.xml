@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8fdde9a-0e80-47df-83d2-5f52b02c0df0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210830121722.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210830202840.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Symptomes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Symptomes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/TravelCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/TravelCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Place.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Place.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Tester.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tester.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Times.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Times.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Travel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Travel.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -330,6 +335,12 @@
       <workItem from="1630241614284" duration="2028000" />
       <workItem from="1630324207691" duration="38000" />
       <workItem from="1630325675211" duration="1171000" />
+      <workItem from="1630346110257" duration="721000" />
+      <workItem from="1630351744736" duration="14000" />
+      <workItem from="1630354341457" duration="1074000" />
+      <workItem from="1630357444105" duration="688000" />
+      <workItem from="1630399573696" duration="4876000" />
+      <workItem from="1630497874818" duration="507000" />
     </task>
     <servers />
   </component>
@@ -384,10 +395,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.768@0.0.1366.768" timestamp="1629798562251" />
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1630325675189">
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1630497879638">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1630325675189" />
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1630497879638" />
     <state x="339" y="172" key="run.anything.popup" timestamp="1628516028793">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

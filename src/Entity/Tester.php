@@ -207,4 +207,10 @@ class Tester implements UserInterface
     public function getElecmail(){
         return $this->elecmail;
     }
+
+    public function __toString(): string
+    {
+        return $this->firstname. " ". $this->lastname;
+    }
+
 }

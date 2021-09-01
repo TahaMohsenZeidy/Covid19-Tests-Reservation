@@ -18,7 +18,7 @@ class TravelCrudController extends AbstractCrudController
     {
         return [
             Field::new('id'),
-            Field::new('fly_date'),
+            Field::new('flydate'),
             Field::new('destination'),
         ];
     }

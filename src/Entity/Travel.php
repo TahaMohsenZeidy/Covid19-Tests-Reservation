@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ApiResource(
  *     itemOperations={"get"},
- *     collectionOperations={"get"}
+ *     collectionOperations={"get", "post"}
  * )
  * @ORM\Entity(repositoryClass=TravelRepository::class)
  */
@@ -29,7 +29,7 @@ class Travel
      * @ORM\Column(type="datetime")
      * @Groups({"get_rdvs_with_all"})
      */
-    private $fly_date;
+    private $flydate;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -66,13 +66,12 @@ class Travel
 
     public function getFlyDate(): ?\DateTimeInterface
     {
-        return $this->fly_date;
+        return $this->flydate;
     }
 
-    public function setFlyDate(\DateTimeInterface $fly_date): self
+    public function setFlyDate(\DateTimeInterface $flydate): self
     {
-        $this->fly_date = $fly_date;
-
+        $this->flydate = $flydate;
         return $this;
     }
 

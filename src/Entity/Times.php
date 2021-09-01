@@ -89,5 +89,10 @@ class Times
         $this->timeFinish = $timeFinish;
     }
 
+    public function __toString(): string
+    {
+        return $this->timeBegin->format('Y-m-d H:i:s');
+    }
+
 
 }

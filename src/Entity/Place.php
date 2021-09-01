@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ApiResource(
  *     itemOperations={"get"},
- *     collectionOperations={"get"}
+ *     collectionOperations={"get", "post"}
  * )
  * @ORM\Entity(repositoryClass=PlaceRepository::class)
  */
@@ -119,6 +119,11 @@ class Place
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     public function getRoom(): ?string
