@@ -81,9 +81,8 @@ class Rdv
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"post", "get_rdvs_with_all"})
-     * @Assert\Choice(choices = {"negative", "positive"})
      */
     private $result;
 
