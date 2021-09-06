@@ -4,6 +4,7 @@ namespace App\EventSubscriber;
 
 use ApiPlatform\Core\EventListener\EventPriorities;
 use App\Entity\MedicalHistory;
+use App\Entity\Patient;
 use App\Entity\Rdv;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,7 +47,7 @@ class PatientedEntitySubscriber implements EventSubscriberInterface
         /** @var UserInterface $patient */
         $patient = $this->tokenStorage->getToken()->getUser();
 
-        if (!$entity instanceof Rdv || Request::METHOD_POST === $method){
+        if (!$entity instanceof Rdv || !$patient instanceof Patient || Request::METHOD_POST === $method){
             return;
         }
 

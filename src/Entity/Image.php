@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use App\Controller\UploadImageAction;
@@ -12,7 +13,10 @@ use App\Controller\UploadImageAction;
  * @ORM\Entity()
  * @Vich\Uploadable()
  * @ApiResource(
- *     attributes={"order"={"id": "DESC"}},
+ *     attributes={
+ *         "order"={"id": "ASC"},
+ *         "formats"={"json", "jsonld", "form"={"multipart/form-data"}}
+ *     },
  *     collectionOperations={
  *         "get",
  *         "post"={
@@ -21,9 +25,16 @@ use App\Controller\UploadImageAction;
  *             "controller"=UploadImageAction::class,
  *             "defaults"={"_api_receive"=false}
  *         }
+ *     },
+ *     itemOperations={
+ *         "get",
+ *         "delete"={
+ *             "access_control"="is_granted('ROLE_WRITER')"
+ *         }
  *     }
  * )
  */
+
 class Image
 {
     /**
@@ -36,6 +47,7 @@ class Image
     /**
      * @Vich\UploadableField(mapping="images", fileNameProperty="url")
      * @Assert\NotNull()
+     * @var File
      */
     private $file;
 

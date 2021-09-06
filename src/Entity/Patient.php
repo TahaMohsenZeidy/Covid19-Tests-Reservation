@@ -160,7 +160,7 @@ class Patient implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\MedicalHistory", mappedBy="patient")
-     * @Groups({"get", "get-admin", "get-owner"})
+     * @Groups({"get", "get-admin", "get-owner", "put"})
      * @ApiSubresource()
      */
     private $medical_history;

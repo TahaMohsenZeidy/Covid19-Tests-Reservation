@@ -44,19 +44,14 @@ class UploadImageAction
         $form = $this->formFactory->create(ImageType::class, $image);
         $form->handleRequest($request);
         // we need to retry doing this.
-
         if ($form->isSubmitted() && $form->isValid()) {
             // Persist the new Image entity
             $this->entityManager->persist($image);
             $this->entityManager->flush();
-
             $image->setFile(null);
-
             return $image;
         }
-
         // Uploading done for us in background by VichUploader...
-
         // Throw an validation exception, that means something went wrong during
         // form validation
         throw new ValidationException(
