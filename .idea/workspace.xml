@@ -2,24 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8fdde9a-0e80-47df-83d2-5f52b02c0df0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/images/6134a08cda543911697104.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/6134a3f7e6faa198393990.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/6134a40a1ca88504428497.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/6134a427b5079931082986.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/6134a45067b92590314924.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/6134f16189ce7909966938.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/6134f275aec52516230056.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/6134f844f1de0510826380.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/613537589da65976503803.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/61364264f1548057412733.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210911102203.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/6136499877212721977999.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/611257ea6eb9e391596906.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UploadImageAction.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UploadImageAction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Image.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Patient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Patient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/PatientedEntitySubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/PatientedEntitySubscriber.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ImageType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ImageType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/MedicalHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MedicalHistory.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -353,7 +340,9 @@
       <workItem from="1630497874818" duration="745000" />
       <workItem from="1630671950510" duration="767000" />
       <workItem from="1630828484672" duration="16883000" />
-      <workItem from="1630942959815" duration="3505000" />
+      <workItem from="1630942959815" duration="5518000" />
+      <workItem from="1631288998163" duration="619000" />
+      <workItem from="1631355630518" duration="1262000" />
     </task>
     <servers />
   </component>
@@ -408,10 +397,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.768@0.0.1366.768" timestamp="1629798562251" />
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1630942972985">
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1631355631049">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1630942972985" />
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1631355631049" />
     <state x="339" y="172" key="run.anything.popup" timestamp="1628516028793">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

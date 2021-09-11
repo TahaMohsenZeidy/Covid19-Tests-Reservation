@@ -176,7 +176,6 @@ class AppFixtures extends Fixture
                 $medHist->setDisease($this->faker->realText());
                 $medHist->setMedecine1($this->faker->realText());
                 $medHist->setMedecine2($this->faker->realText());
-                $medHist->setMedecine3($this->faker->realText());
                 $patientReference = $this->getRandomPatientReference($medHist);
                 $medHist->setPatient($patientReference);
 //                $medHist->addImage($image);

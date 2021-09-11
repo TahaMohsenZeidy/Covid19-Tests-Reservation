@@ -70,12 +70,6 @@ class MedicalHistory
     private $medecine2;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"get", "post"})
-     */
-    private $medecine3;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Patient", inversedBy="medical_history")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"post"})
@@ -167,18 +161,6 @@ class MedicalHistory
     public function setMedecine2(string $medecine2): self
     {
         $this->medecine2 = $medecine2;
-
-        return $this;
-    }
-
-    public function getMedecine3(): ?string
-    {
-        return $this->medecine3;
-    }
-
-    public function setMedecine3(string $medecine3): self
-    {
-        $this->medecine3 = $medecine3;
 
         return $this;
     }
